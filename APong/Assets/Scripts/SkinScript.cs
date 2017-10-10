@@ -19,6 +19,10 @@ public class SkinScript : MonoBehaviour {
 
     public void ChangeBGColor() {
 
+        if (transform.Find("AlertIcon").gameObject.activeInHierarchy) {
+            transform.Find("AlertIcon").gameObject.SetActive(false);
+        }
+
         GameManager.PlaySound(Manager.GetComponent<AudioSource>(), 0f);
 
         SkinManager.RandomSkin[GameManager.Player.skinID].transform.Find("Ticked").gameObject.SetActive(false);

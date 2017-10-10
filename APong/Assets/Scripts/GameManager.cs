@@ -201,6 +201,8 @@ public class GameManager : MonoBehaviour {
                         result.transform.Find("Custom").gameObject.SetActive(false);
                     }
 
+                    
+
                     SkinManager.FindNextColor();
                 }));
             } else {
@@ -221,6 +223,9 @@ public class GameManager : MonoBehaviour {
                     print(points + "\n" + nextColor);
 
                     if (Player.gamesPlayed == 5 || (points >= nextColor && !SkinManager.AllUnlocked())) {
+
+                        SkinManager.RandomSkin[Player.gifts - 1].transform.Find("AlertIcon").gameObject.SetActive(true);
+
                         result.transform.Find("Custom").gameObject.SetActive(true);
                         result.transform.Find("Custom").GetComponent<Animation>().Play();
                     } else {
@@ -228,6 +233,9 @@ public class GameManager : MonoBehaviour {
                     }
 
                     SkinManager.FindNextColor();
+
+
+
                 }));
             }
         } else {
