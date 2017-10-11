@@ -304,9 +304,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bgColor: {r: 0, g: 0, b: 0, a: 0}
   isUsing: 0
+  unlocked: 0
   Skin: {fileID: 0}
   skinName: Bear
-  pointsToUnlock: 1500
+  pointsToUnlock: 90
   ID: 0
   backgroundSkin: {fileID: 1259843227}
 --- !u!1 &17046099
@@ -499,6 +500,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bgColor: {r: 0.6, g: 0.054901965, b: 0.054901965, a: 1}
   isUsing: 0
+  unlocked: 0
   Skin: {fileID: 21300000, guid: e619da085f7e9944390d2748426a99a6, type: 3}
   skinName: Lux
   pointsToUnlock: 0
@@ -1435,51 +1437,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 145073839}
---- !u!1 &165688689
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 165688690}
-  - component: {fileID: 165688691}
-  m_Layer: 5
-  m_Name: NextSkin
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!224 &165688690
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 165688689}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1730541580}
-  - {fileID: 1227522056}
-  - {fileID: 2044965713}
-  - {fileID: 209476325}
-  - {fileID: 510007546}
-  m_Father: {fileID: 1304930850}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 110, y: -50}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &165688691
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 165688689}
 --- !u!1 &171435030
 GameObject:
   m_ObjectHideFlags: 0
@@ -1512,10 +1469,10 @@ RectTransform:
   m_Father: {fileID: 648647884}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 348, y: -50}
+  m_SizeDelta: {x: 64, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &171435032
 MonoBehaviour:
@@ -1665,7 +1622,7 @@ RectTransform:
   - {fileID: 1169189924}
   - {fileID: 678423643}
   m_Father: {fileID: 1304930850}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -2053,7 +2010,7 @@ RectTransform:
   m_Children:
   - {fileID: 1200835629}
   m_Father: {fileID: 1304930850}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -2178,80 +2135,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 203436894}
---- !u!1 &209476324
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 209476325}
-  - component: {fileID: 209476327}
-  - component: {fileID: 209476326}
-  m_Layer: 5
-  m_Name: LockedGift
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!224 &209476325
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 209476324}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 165688690}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &209476326
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 209476324}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_FontData:
-    m_Font: {fileID: 12800000, guid: ca377e47b89f04248a71ddac24da6fa1, type: 3}
-    m_FontSize: 40
-    m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 0
-    m_MaxSize: 40
-    m_Alignment: 4
-    m_AlignByGeometry: 0
-    m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
-    m_LineSpacing: 1
-  m_Text: '!'
---- !u!222 &209476327
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 209476324}
 --- !u!1 &216008246
 GameObject:
   m_ObjectHideFlags: 0
@@ -3557,6 +3440,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bgColor: {r: 0, g: 0.23529413, b: 0.47058827, a: 1}
   isUsing: 0
+  unlocked: 0
   Skin: {fileID: 21300000, guid: 88e6e3039e8c6d348b2f209a1bfa1404, type: 3}
   skinName: Rocket
   pointsToUnlock: 0
@@ -5142,6 +5026,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bgColor: {r: 0, g: 0.70980394, b: 1, a: 1}
   isUsing: 0
+  unlocked: 0
   Skin: {fileID: 21300000, guid: 924ad8cdcd30ec1469a888d04767b4be, type: 3}
   skinName: Coffee
   pointsToUnlock: 0
@@ -5722,74 +5607,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 508949907}
---- !u!1 &510007545
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 510007546}
-  - component: {fileID: 510007548}
-  - component: {fileID: 510007547}
-  m_Layer: 5
-  m_Name: ObtainedIcon
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!224 &510007546
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 510007545}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 165688690}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 50, y: 50}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &510007547
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 510007545}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 2701c2c56f79d114990488346f3ef738, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
---- !u!222 &510007548
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 510007545}
 --- !u!1 &522096668
 GameObject:
   m_ObjectHideFlags: 0
@@ -6441,9 +6258,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bgColor: {r: 0, g: 0, b: 0, a: 0}
   isUsing: 0
+  unlocked: 0
   Skin: {fileID: 0}
   skinName: Home
-  pointsToUnlock: 2000
+  pointsToUnlock: 100
   ID: 0
   backgroundSkin: {fileID: 1259843227}
 --- !u!1 &589834015
@@ -7210,10 +7028,10 @@ RectTransform:
   m_Father: {fileID: 648647884}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 274, y: -50}
+  m_SizeDelta: {x: 64, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &673033242
 MonoBehaviour:
@@ -7740,6 +7558,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bgColor: {r: 0, g: 0.33333334, b: 1, a: 1}
   isUsing: 0
+  unlocked: 0
   Skin: {fileID: 21300000, guid: 6b14ad0084b11ca489503f9794e1e67d, type: 3}
   skinName: Exagons
   pointsToUnlock: 0
@@ -7947,9 +7766,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bgColor: {r: 0.20000002, g: 0.20000002, b: 0.20000002, a: 1}
   isUsing: 0
+  unlocked: 0
   Skin: {fileID: 21300000, guid: 2936979d56141f944bcd3d70d337317f, type: 3}
   skinName: SeS
-  pointsToUnlock: 1000
+  pointsToUnlock: 70
   ID: 0
   backgroundSkin: {fileID: 1259843227}
 --- !u!1 &743983136
@@ -8813,7 +8633,7 @@ RectTransform:
   m_Children:
   - {fileID: 1371320267}
   m_Father: {fileID: 1304930850}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -9962,9 +9782,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bgColor: {r: 0, g: 0.23529413, b: 0.47058827, a: 1}
   isUsing: 0
+  unlocked: 0
   Skin: {fileID: 21300000, guid: 88e6e3039e8c6d348b2f209a1bfa1404, type: 3}
   skinName: Rocket
-  pointsToUnlock: 900
+  pointsToUnlock: 60
   ID: 0
   backgroundSkin: {fileID: 1259843227}
 --- !u!1 &951641181
@@ -10180,6 +10001,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bgColor: {r: 1, g: 0.44705883, b: 0, a: 1}
   isUsing: 0
+  unlocked: 0
   Skin: {fileID: 21300000, guid: c827e1399b7aa0b429f4deb6dc12cd56, type: 3}
   skinName: Orbits
   pointsToUnlock: 0
@@ -10594,9 +10416,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bgColor: {r: 0, g: 0, b: 0, a: 0}
   isUsing: 0
+  unlocked: 0
   Skin: {fileID: 21300000, guid: 44fe6dcea8c42914d92a0b5984506a90, type: 3}
   skinName: Arrows
-  pointsToUnlock: 1200
+  pointsToUnlock: 80
   ID: 0
   backgroundSkin: {fileID: 1259843227}
 --- !u!1 &1005524721
@@ -10727,9 +10550,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bgColor: {r: 0.7882353, g: 0.2509804, b: 0.22745098, a: 1}
   isUsing: 0
+  unlocked: 0
   Skin: {fileID: 21300000, guid: 40d760abf4017b549a8b736fd590bf61, type: 3}
   skinName: Fresh!
-  pointsToUnlock: 400
+  pointsToUnlock: 30
   ID: 0
   backgroundSkin: {fileID: 1259843227}
 --- !u!1 &1013583412
@@ -12839,74 +12663,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1217138235}
---- !u!1 &1227522055
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1227522056}
-  - component: {fileID: 1227522058}
-  - component: {fileID: 1227522057}
-  m_Layer: 5
-  m_Name: InnerCircle
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1227522056
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1227522055}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 165688690}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 80, y: 80}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1227522057
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1227522055}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 88169934f1dfb3946825631e7bfa6855, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
---- !u!222 &1227522058
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1227522055}
 --- !u!1 &1247044125
 GameObject:
   m_ObjectHideFlags: 0
@@ -13735,7 +13491,6 @@ RectTransform:
   - {fileID: 631149121}
   - {fileID: 1529819058}
   - {fileID: 682229449}
-  - {fileID: 165688690}
   - {fileID: 857437536}
   - {fileID: 203436895}
   - {fileID: 172848216}
@@ -14445,6 +14200,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bgColor: {r: 0, g: 0.70980394, b: 1, a: 1}
   isUsing: 0
+  unlocked: 0
   Skin: {fileID: 0}
   skinName: Default
   pointsToUnlock: 0
@@ -15373,6 +15129,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bgColor: {r: 0.85098046, g: 0.8235295, b: 0.7607844, a: 1}
   isUsing: 0
+  unlocked: 0
   Skin: {fileID: 21300000, guid: 1fdb5a736f91db14994899a910479bd8, type: 3}
   skinName: Herbie
   pointsToUnlock: 0
@@ -15608,10 +15365,10 @@ RectTransform:
   m_Father: {fileID: 648647884}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 126, y: -50}
+  m_SizeDelta: {x: 64, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1454620763
 MonoBehaviour:
@@ -15941,9 +15698,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bgColor: {r: 1, g: 1, b: 1, a: 1}
   isUsing: 0
+  unlocked: 0
   Skin: {fileID: 0}
   skinName: Woooush
-  pointsToUnlock: 750
+  pointsToUnlock: 50
   ID: 0
   backgroundSkin: {fileID: 1259843227}
 --- !u!1 &1472176274
@@ -16595,7 +16353,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1543170856
 RectTransform:
   m_ObjectHideFlags: 0
@@ -16857,9 +16615,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bgColor: {r: 0.5372549, g: 0.54509807, b: 0.49411765, a: 1}
   isUsing: 0
+  unlocked: 0
   Skin: {fileID: 21300000, guid: 40d760abf4017b549a8b736fd590bf61, type: 3}
   skinName: SL-1200
-  pointsToUnlock: 100
+  pointsToUnlock: 10
   ID: 0
   backgroundSkin: {fileID: 1259843227}
 --- !u!1 &1560332732
@@ -17620,6 +17379,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bgColor: {r: 1, g: 0.7517241, b: 0, a: 1}
   isUsing: 0
+  unlocked: 0
   Skin: {fileID: 21300000, guid: 3596a95e209473949b939a4964e7af08, type: 3}
   skinName: Sunny
   pointsToUnlock: 0
@@ -18611,10 +18371,10 @@ RectTransform:
   m_Father: {fileID: 648647884}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 52, y: -50}
+  m_SizeDelta: {x: 64, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1670482383
 MonoBehaviour:
@@ -19493,95 +19253,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bgColor: {r: 0.3019608, g: 0.3019608, b: 0.3019608, a: 1}
   isUsing: 0
+  unlocked: 0
   Skin: {fileID: 21300000, guid: 7af78331f8e5f0b4facdf16268d12934, type: 3}
   skinName: Thunder
   pointsToUnlock: 0
   ID: 0
   backgroundSkin: {fileID: 1259843227}
---- !u!1 &1730541579
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1730541580}
-  - component: {fileID: 1730541583}
-  - component: {fileID: 1730541582}
-  - component: {fileID: 1730541581}
-  m_Layer: 5
-  m_Name: LoadingCircle
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1730541580
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1730541579}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 165688690}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -117.37662}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!111 &1730541581
-Animation:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1730541579}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 17816f48324463d4d987fdf9f1362322, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: 17816f48324463d4d987fdf9f1362322, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
---- !u!114 &1730541582
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1730541579}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.6627451, b: 0.14117648, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 88169934f1dfb3946825631e7bfa6855, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 0
-  m_FillClockwise: 1
-  m_FillOrigin: 2
---- !u!222 &1730541583
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1730541579}
 --- !u!1 &1732216963
 GameObject:
   m_ObjectHideFlags: 0
@@ -19710,9 +19387,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bgColor: {r: 0.4156863, g: 0.3137255, b: 0.03137255, a: 1}
   isUsing: 0
+  unlocked: 0
   Skin: {fileID: 21300000, guid: ab27562cb7b19f240a2b440555f167a3, type: 3}
   skinName: Hypnoboy
-  pointsToUnlock: 600
+  pointsToUnlock: 40
   ID: 0
   backgroundSkin: {fileID: 1259843227}
 --- !u!1 &1733466214
@@ -21070,6 +20748,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bgColor: {r: 0.6137934, g: 0, b: 1, a: 1}
   isUsing: 0
+  unlocked: 0
   Skin: {fileID: 0}
   skinName: Purple
   pointsToUnlock: 0
@@ -21716,10 +21395,10 @@ RectTransform:
   m_Father: {fileID: 648647884}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 200, y: -50}
+  m_SizeDelta: {x: 64, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1902324212
 MonoBehaviour:
@@ -22761,80 +22440,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2018303968}
---- !u!1 &2044965712
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 2044965713}
-  - component: {fileID: 2044965715}
-  - component: {fileID: 2044965714}
-  m_Layer: 5
-  m_Name: Percentage
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &2044965713
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2044965712}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 165688690}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -40, y: -50}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2044965714
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2044965712}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_FontData:
-    m_Font: {fileID: 12800000, guid: c08634097b1e82d4dbc23b758efc4f75, type: 3}
-    m_FontSize: 0
-    m_FontStyle: 0
-    m_BestFit: 1
-    m_MinSize: 0
-    m_MaxSize: 35
-    m_Alignment: 4
-    m_AlignByGeometry: 0
-    m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
-    m_LineSpacing: 1
-  m_Text: 600
---- !u!222 &2044965715
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2044965712}
 --- !u!1 &2047245495
 GameObject:
   m_ObjectHideFlags: 0
@@ -23276,9 +22881,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bgColor: {r: 0.2784314, g: 0.89019614, b: 1, a: 1}
   isUsing: 0
+  unlocked: 0
   Skin: {fileID: 21300000, guid: 63279890254e0c542ae9ad0bac8d6b6a, type: 3}
   skinName: Baloon
-  pointsToUnlock: 250
+  pointsToUnlock: 20
   ID: 0
   backgroundSkin: {fileID: 1259843227}
 --- !u!1 &2076836808

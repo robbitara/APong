@@ -25,7 +25,7 @@ public class BallPhysics : MonoBehaviour {
     private void FixedUpdate() {
         if (rb2d.velocity.magnitude > maxSpeed && !ctrl) {
             ctrl = true;
-            rb2d.GetComponent<SpriteRenderer>().color = Color.red;
+            //rb2d.GetComponent<SpriteRenderer>().color = Color.red;
         }
     }
 
@@ -43,14 +43,13 @@ public class BallPhysics : MonoBehaviour {
 
             ball_speed *= incremento;
 
-            rb2d.velocity = rb2d.velocity.normalized * ball_speed.magnitude;
-            print("Velocity: " + rb2d.velocity + "\nMagnitude: " + rb2d.velocity.magnitude);
-        }
+            if (Vector2.Distance(rb2d.position, CollisionPos) < 3.5f) {
+                float angle = GetAngle(rb2d.position, rb2d.gameObject.transform.parent.position);
+                rb2d.velocity = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * ball_speed.magnitude;
+            }
 
-        // Controllo vicinanza collisioni
-        float angle = GetAngle(rb2d.position, rb2d.gameObject.transform.parent.position);                           // calcolo l'angolo tra la posizione della palla e il centro dell'area di gioco
-        if (Vector2.Distance(rb2d.position, CollisionPos) < 3f) {                                                   // se la distanza tra l'ultima collisione e la nuova collisione è minore di x
-            rb2d.velocity = new Vector2(rb2d.velocity.x * Mathf.Cos(angle), rb2d.velocity.y * Mathf.Sin(angle));    // allora mando la palla verso il centro dell'area di gioco
+            rb2d.velocity = rb2d.velocity.normalized * ball_speed.magnitude;
+
         }
 
         CollisionPos = rb2d.position;

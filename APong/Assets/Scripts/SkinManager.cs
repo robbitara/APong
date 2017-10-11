@@ -52,6 +52,7 @@ public class SkinManager : MonoBehaviour {
         // imposto le skin elite in base al punteggio massimo del giocatore
 
         GameManager.ArraySort(EliteSkin, EliteSkin.Length, "Elite");
+
         for (int i = 0; i < EliteSkin.Length; i++) {
             EliteSkin[i].GetComponent<SkinScript>().ID = i;
             if (GameManager.Player.highscore >= EliteSkin[i].GetComponent<SkinScript>().pointsToUnlock) {
@@ -63,6 +64,12 @@ public class SkinManager : MonoBehaviour {
                 if (EliteSkin[i].GetComponent<SkinScript>().ID == GameManager.Player.skinID && GameManager.Player.SkinType == "EliteSkin") {
                     EliteSkin[i].GetComponent<SkinScript>().isUsing = true;
                 }
+
+                if (!EliteSkin[i].GetComponent<SkinScript>().unlocked) {
+                    EliteSkin[i].GetComponent<SkinScript>().unlocked = true;
+                    EliteSkin[i].transform.Find("AlertIcon").gameObject.SetActive(true);
+                }
+
             } else {
                 EliteSkin[i].GetComponent<Image>().color = new Color(0, 0, 0, 1);
                 EliteSkin[i].transform.Find("UnlockPoints").GetComponent<Text>().text = EliteSkin[i].GetComponent<SkinScript>().pointsToUnlock.ToString();
@@ -70,39 +77,37 @@ public class SkinManager : MonoBehaviour {
             }
         }
 
-        // trovo punteggio necessario per prossima skin
-        FindNextColor();
-
         // attivo spunta su skin attualmente in uso
         if (RandomSkin[GameManager.Player.skinID].GetComponent<SkinScript>().isUsing) {
             RandomSkin[GameManager.Player.skinID].transform.Find("Ticked").gameObject.SetActive(true);
             EliteSkin[GameManager.Player.skinID].transform.Find("Ticked").gameObject.SetActive(false);
         }
 
-        if (EliteSkin[GameManager.Player.skinID].GetComponent<SkinScript>().isUsing) {
+        else /*(EliteSkin[GameManager.Player.skinID].GetComponent<SkinScript>().isUsing)*/ {
             RandomSkin[GameManager.Player.skinID].transform.Find("Ticked").gameObject.SetActive(false);
             EliteSkin[GameManager.Player.skinID].transform.Find("Ticked").gameObject.SetActive(true);
         }
     }
 
     public static bool AllUnlocked() {
-        if (GameManager.Player.highscore >= EliteSkin[EliteSkin.Length - 1].GetComponent<SkinScript>().pointsToUnlock) {
+        if (GameManager.nextColor >= EliteSkin[EliteSkin.Length - 1].GetComponent<SkinScript>().pointsToUnlock) {
             return true;
         }
         return false;
     }
 
-    public static void FindNextColor() {
+    public static void FindNextSkin() {
+
+        if (AllUnlocked()) {
+            return;
+        }
+
         if (GameManager.Player.highscore < EliteSkin[0].GetComponent<SkinScript>().pointsToUnlock) {
             GameManager.nextColor = EliteSkin[0].GetComponent<SkinScript>().pointsToUnlock;
         } else {
-            for (int i = 0; i < EliteSkin.Length; i++) {
+            for (int i = 1; i < (EliteSkin.Length - 1); i++) {
                 if (GameManager.Player.highscore >= EliteSkin[i].GetComponent<SkinScript>().pointsToUnlock) {
-                    if (i < EliteSkin.Length) {
-                        GameManager.nextColor = EliteSkin[i + 1].GetComponent<SkinScript>().pointsToUnlock;
-                    } else {
-                        GameManager.nextColor = EliteSkin[i].GetComponent<SkinScript>().pointsToUnlock;
-                    }
+                    GameManager.nextColor = EliteSkin[i+1].GetComponent<SkinScript>().pointsToUnlock;
                 }
             }
         }

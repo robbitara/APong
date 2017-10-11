@@ -173,14 +173,6 @@ public class GameManager : MonoBehaviour {
 
         result.SetActive(true);
 
-        // Se ho già ottenuto tutte le skin Elite
-
-        if (SkinManager.AllUnlocked()) {
-            result.transform.Find("NextSkin/Percentage").gameObject.SetActive(false);
-            result.transform.Find("NextSkin/ObtainedIcon").gameObject.SetActive(true);
-            result.transform.Find("NextSkin/LockedGift").gameObject.SetActive(false);
-        }
-
         if (Player.gamesPlayed != 5 || (points < nextColor && !SkinManager.AllUnlocked())) {
             result.transform.Find("Custom").gameObject.SetActive(false);
         }
@@ -201,9 +193,7 @@ public class GameManager : MonoBehaviour {
                         result.transform.Find("Custom").gameObject.SetActive(false);
                     }
 
-                    
-
-                    SkinManager.FindNextColor();
+                    SkinManager.FindNextSkin();
                 }));
             } else {
                 result.transform.Find("AuxMenu").gameObject.SetActive(true);
@@ -228,21 +218,19 @@ public class GameManager : MonoBehaviour {
                             SkinManager.RandomSkin[Player.gifts - 1].transform.Find("AlertIcon").gameObject.SetActive(true);
                         }
 
-                        if ((points >= nextColor && !SkinManager.AllUnlocked())) {
-                            for (int i=0; i < SkinManager.EliteSkin.Length; i++) {
-                                if (nextColor == SkinManager.EliteSkin[i].GetComponent<SkinScript>().pointsToUnlock) {
-                                    SkinManager.EliteSkin[i].transform.Find("AlertIcon").gameObject.SetActive(true);
-                                }
-                            }
-                        }
+                        //if ((points >= nextColor && !SkinManager.AllUnlocked())) {
+                        //    for (int i=0; i < SkinManager.EliteSkin.Length; i++) {
+                        //        if (nextColor == SkinManager.EliteSkin[i].GetComponent<SkinScript>().pointsToUnlock) {
+                        //            SkinManager.EliteSkin[i].transform.Find("AlertIcon").gameObject.SetActive(true);
+                        //        }
+                        //    }
+                        //}
 
                         result.transform.Find("Custom").gameObject.SetActive(true);
                         result.transform.Find("Custom").GetComponent<Animation>().Play();
-                    } else {
-                        result.transform.Find("Custom").gameObject.SetActive(false);
                     }
 
-                    SkinManager.FindNextColor();
+                    SkinManager.FindNextSkin();
 
 
 
@@ -274,7 +262,9 @@ public class GameManager : MonoBehaviour {
 
     public void StartGame() {
 
-        StartCoroutine(checkInternetConnection(() => { print("Connection status: " + isConnected); }));
+        //StartCoroutine(checkInternetConnection(() => { print("Connection status: " + isConnected); }));
+
+        SkinManager.FindNextSkin();
 
         if (!Advertisement.isShowing) {
             ResetMenu();

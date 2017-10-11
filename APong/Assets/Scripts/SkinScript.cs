@@ -5,6 +5,7 @@ public class SkinScript : MonoBehaviour {
 
     public Color bgColor;
     public bool isUsing;
+    public bool unlocked = false;
     public Sprite Skin;
     public string skinName;
     public int pointsToUnlock, ID;
