@@ -22,6 +22,6 @@ public class PlayGamesScript : MonoBehaviour {
     }
 
     public static void ShowLeaderBoard() {
-        Social.ShowLeaderboardUI();
+        PlayGamesPlatform.Instance.ShowLeaderboardUI("GPCggIqMTV1VwQAhAA");
     }
 }

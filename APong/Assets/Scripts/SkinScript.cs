@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class SkinScript : MonoBehaviour {
 
     public Color bgColor;
-    public bool UIColor, isUsing;
+    public bool isUsing;
     public Sprite Skin;
     public string skinName;
     public int pointsToUnlock, ID;
@@ -41,6 +41,5 @@ public class SkinScript : MonoBehaviour {
 
         backgroundSkin.GetComponent<SpriteRenderer>().sprite = Skin;
         GameManager.Player.skinID = ID;
-        GameManager.Player.skinColor = UIColor;
     }
 }

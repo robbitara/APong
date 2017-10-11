@@ -224,7 +224,17 @@ public class GameManager : MonoBehaviour {
 
                     if (Player.gamesPlayed == 5 || (points >= nextColor && !SkinManager.AllUnlocked())) {
 
-                        SkinManager.RandomSkin[Player.gifts - 1].transform.Find("AlertIcon").gameObject.SetActive(true);
+                        if (Player.gamesPlayed == 5) {
+                            SkinManager.RandomSkin[Player.gifts - 1].transform.Find("AlertIcon").gameObject.SetActive(true);
+                        }
+
+                        if ((points >= nextColor && !SkinManager.AllUnlocked())) {
+                            for (int i=0; i < SkinManager.EliteSkin.Length; i++) {
+                                if (nextColor == SkinManager.EliteSkin[i].GetComponent<SkinScript>().pointsToUnlock) {
+                                    SkinManager.EliteSkin[i].transform.Find("AlertIcon").gameObject.SetActive(true);
+                                }
+                            }
+                        }
 
                         result.transform.Find("Custom").gameObject.SetActive(true);
                         result.transform.Find("Custom").GetComponent<Animation>().Play();
