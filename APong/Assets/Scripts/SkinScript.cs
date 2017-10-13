@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 
 public class SkinScript : MonoBehaviour {
 
@@ -18,13 +17,15 @@ public class SkinScript : MonoBehaviour {
         Manager = GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>();
     }
 
-    public void ChangeBGColor() {
+    public void ChangeBGColor(bool isSilent) {
 
         if (transform.Find("AlertIcon").gameObject.activeInHierarchy) {
             transform.Find("AlertIcon").gameObject.SetActive(false);
         }
 
-        GameManager.PlaySound(Manager.GetComponent<AudioSource>(), 0f);
+        if (!isSilent) {
+            GameManager.PlaySound(Manager.GetComponent<AudioSource>(), 0f);
+        }
 
         SkinManager.RandomSkin[GameManager.Player.skinID].transform.Find("Ticked").gameObject.SetActive(false);
         SkinManager.EliteSkin[GameManager.Player.skinID].transform.Find("Ticked").gameObject.SetActive(false);
@@ -42,5 +43,7 @@ public class SkinScript : MonoBehaviour {
 
         backgroundSkin.GetComponent<SpriteRenderer>().sprite = Skin;
         GameManager.Player.skinID = ID;
+
+        PlayerClass.SaveProfile(GameManager.Player);
     }
 }

@@ -72,8 +72,6 @@ public class GameManager : MonoBehaviour {
 
     public void UpdateStats() {
 
-        //debugPlayer(Player);
-
         highscore_intro.text = Player.highscore.ToString();
 
         Player.resetGamesPlayed();
@@ -123,7 +121,7 @@ public class GameManager : MonoBehaviour {
             AdManager.InitAd();
         }
 
-        if (Advertisement.IsReady() && isConnected) {
+        if (isConnected) {
             Player.gamesPlayed++;
 
             if (Player.gifts < SkinManager.RandomSkin.Length) {
@@ -156,8 +154,9 @@ public class GameManager : MonoBehaviour {
         if (points > Player.highscore) {
             if (isConnected) {
                 Player.highscore = points;
-                //PlayGamesScript.AddScoreToLeaderboard(GPGSIds.leaderboard_apong_leaderboard, Player.highscore);
+                PlayGamesScript.AddScoreToLeaderboard(GPGSIds.leaderboard_apong_leaderboard, Player.highscore);
             }
+
             MenuShowed = SetMenu(HighscoreMenu);
         } else {
             MenuShowed = SetMenu(LoseMenu);
@@ -197,6 +196,7 @@ public class GameManager : MonoBehaviour {
                 }));
             } else {
                 result.transform.Find("AuxMenu").gameObject.SetActive(true);
+
                 for (int i = 0; i < (Player.gamesPlayed - 1); i++) {
                     result.transform.Find("AuxMenu/CirclesBox").GetChild(i).GetComponent<Image>().color = new Color32(255, 164, 0, 255);
                     result.transform.Find("AuxMenu/CirclesBox").GetChild(i).GetComponent<RectTransform>().localScale = Vector3.one;
@@ -218,22 +218,11 @@ public class GameManager : MonoBehaviour {
                             SkinManager.RandomSkin[Player.gifts - 1].transform.Find("AlertIcon").gameObject.SetActive(true);
                         }
 
-                        //if ((points >= nextColor && !SkinManager.AllUnlocked())) {
-                        //    for (int i=0; i < SkinManager.EliteSkin.Length; i++) {
-                        //        if (nextColor == SkinManager.EliteSkin[i].GetComponent<SkinScript>().pointsToUnlock) {
-                        //            SkinManager.EliteSkin[i].transform.Find("AlertIcon").gameObject.SetActive(true);
-                        //        }
-                        //    }
-                        //}
-
                         result.transform.Find("Custom").gameObject.SetActive(true);
                         result.transform.Find("Custom").GetComponent<Animation>().Play();
                     }
 
                     SkinManager.FindNextSkin();
-
-
-
                 }));
             }
         } else {
@@ -262,7 +251,7 @@ public class GameManager : MonoBehaviour {
 
     public void StartGame() {
 
-        //StartCoroutine(checkInternetConnection(() => { print("Connection status: " + isConnected); }));
+        StartCoroutine(checkInternetConnection(() => {  }));
 
         SkinManager.FindNextSkin();
 
@@ -306,9 +295,9 @@ public class GameManager : MonoBehaviour {
         SkinManager.setSkins();
 
         if (Player.SkinType == "RandomSkin") {
-            SkinManager.RandomSkin[Player.skinID].GetComponent<SkinScript>().ChangeBGColor();
+            SkinManager.RandomSkin[Player.skinID].GetComponent<SkinScript>().ChangeBGColor(true);
         } else {
-            SkinManager.EliteSkin[Player.skinID].GetComponent<SkinScript>().ChangeBGColor();
+            SkinManager.EliteSkin[Player.skinID].GetComponent<SkinScript>().ChangeBGColor(true);
         }
     }
 

@@ -35,7 +35,8 @@ public class SkinManager : MonoBehaviour {
         for (int i = 0; i < RandomSkin.Length; i++) {
             if (i < GameManager.Player.gifts) {
                 RandomSkin[i].GetComponent<Image>().color = RandomSkin[i].GetComponent<SkinScript>().bgColor;
-                RandomSkin[i].GetComponent<Button>().onClick.AddListener(RandomSkin[i].GetComponent<SkinScript>().ChangeBGColor);
+                int n = i;
+                RandomSkin[i].GetComponent<Button>().onClick.AddListener(() => RandomSkin[n].GetComponent<SkinScript>().ChangeBGColor(false));
                 RandomSkin[i].transform.Find("LabelContainer").Find("Text").GetComponent<Text>().text = RandomSkin[i].GetComponent<SkinScript>().skinName;
                 RandomSkin[i].transform.Find("Locked").gameObject.SetActive(false);
                 if (RandomSkin[i].GetComponent<SkinScript>().ID == GameManager.Player.skinID && GameManager.Player.SkinType == "RandomSkin") {
@@ -57,7 +58,8 @@ public class SkinManager : MonoBehaviour {
             EliteSkin[i].GetComponent<SkinScript>().ID = i;
             if (GameManager.Player.highscore >= EliteSkin[i].GetComponent<SkinScript>().pointsToUnlock) {
                 EliteSkin[i].GetComponent<Image>().color = EliteSkin[i].GetComponent<SkinScript>().bgColor;
-                EliteSkin[i].GetComponent<Button>().onClick.AddListener(EliteSkin[i].GetComponent<SkinScript>().ChangeBGColor);
+                int n = i;
+                EliteSkin[i].GetComponent<Button>().onClick.AddListener(() => EliteSkin[n].GetComponent<SkinScript>().ChangeBGColor(false));
                 EliteSkin[i].transform.Find("LabelContainer").transform.Find("Text").GetComponent<Text>().text = EliteSkin[i].GetComponent<SkinScript>().skinName;
                 EliteSkin[i].transform.Find("UnlockPoints").GetComponent<Text>().text = "";
 
@@ -65,10 +67,10 @@ public class SkinManager : MonoBehaviour {
                     EliteSkin[i].GetComponent<SkinScript>().isUsing = true;
                 }
 
-                if (!EliteSkin[i].GetComponent<SkinScript>().unlocked) {
-                    EliteSkin[i].GetComponent<SkinScript>().unlocked = true;
-                    EliteSkin[i].transform.Find("AlertIcon").gameObject.SetActive(true);
-                }
+                //if (!EliteSkin[i].GetComponent<SkinScript>().unlocked) {
+                //    EliteSkin[i].GetComponent<SkinScript>().unlocked = true;
+                //    EliteSkin[i].transform.Find("AlertIcon").gameObject.SetActive(true);
+                //}
 
             } else {
                 EliteSkin[i].GetComponent<Image>().color = new Color(0, 0, 0, 1);

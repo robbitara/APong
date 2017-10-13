@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 
 public class BallPhysics : MonoBehaviour {
 
@@ -25,7 +24,6 @@ public class BallPhysics : MonoBehaviour {
     private void FixedUpdate() {
         if (rb2d.velocity.magnitude > maxSpeed && !ctrl) {
             ctrl = true;
-            //rb2d.GetComponent<SpriteRenderer>().color = Color.red;
         }
     }
 
