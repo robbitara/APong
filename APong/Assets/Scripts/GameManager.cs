@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour {
 
     void Start() {
         LoadProfile();                                                      // Imposto Skin / seleziono skin da utilizzare
-        StartCoroutine(checkInternetConnection( () => UpdateStats()));      // Controllo connessione ad internet / Aggiorno statistiche
+        StartCoroutine(checkInternetConnection( () => { UpdateStats(); }));    
 
         resetScene = false;                                                 // Imposto bool di reset della scena
         ReachedHighscore = false;                                           // Imposto bool di raggiungimento highscore
@@ -50,7 +50,8 @@ public class GameManager : MonoBehaviour {
             ReachedHighscore = true;
         }
 
-        if (Vector2.Distance(palla.transform.position, palla.transform.parent.position) > 3f && playing) {
+        if (Vector2.Distance(palla.transform.position, palla.transform.parent.position) > 2.5f && playing) {
+            barra.GetComponent<PolygonCollider2D>().enabled = false;
             playing = false;
             StartCoroutine(WaitForAd());
         }
@@ -108,6 +109,12 @@ public class GameManager : MonoBehaviour {
 
             if (!GameSettings.internetCheck) {
                 noInternet.SetActive(true);
+
+                if (Application.systemLanguage == SystemLanguage.Italian) {
+                    noInternet.transform.Find("Text").GetComponent<Text>().text = "Sembra che tu non sia connesso ad internet.\nPuoi comunque continuare a giocare" +
+                        ", ma i tuoi punteggi alti non verranno salvati e non potrai sbloccare alcuna skin.";
+                }
+
                 MenuShowed = noInternet;
                 GlobalMenuTarget = new Vector2(MenuShowed.GetComponent<RectTransform>().anchoredPosition.x, 0f);
                 GameSettings.internetCheck = true;
@@ -158,11 +165,6 @@ public class GameManager : MonoBehaviour {
 
     void SelectEndGameMenu () {
         if (points > Player.highscore) {
-            if (isConnected) {
-                Player.highscore = points;
-                PlayGamesScript.AddScoreToLeaderboard(GPGSIds.leaderboard_apong_leaderboard, Player.highscore);
-            }
-
             MenuShowed = SetMenu(HighscoreMenu);
         } else {
             MenuShowed = SetMenu(LoseMenu);
@@ -175,6 +177,11 @@ public class GameManager : MonoBehaviour {
     // Qui terminano le chiamate di fine partita.
 
     GameObject SetMenu(GameObject result) {
+
+        if (isConnected && points > Player.highscore) {
+            Player.highscore = points;
+            PlayGamesScript.AddScoreToLeaderboard(GPGSIds.leaderboard_apong_leaderboard, Player.highscore);
+        }
 
         result.SetActive(true);
 
@@ -277,6 +284,7 @@ public class GameManager : MonoBehaviour {
             ReachedHighscore = false;
             playing = true;
             palla.GetComponent<BallPhysics>().ResetBall();
+            barra.GetComponent<PolygonCollider2D>().enabled = true;
             StartCoroutine(WaitAndPlay());
         }
     }
@@ -383,13 +391,23 @@ public class GameManager : MonoBehaviour {
     }
 
     IEnumerator checkInternetConnection(Action Job) {
+        float time = 0f;
         WWW www = new WWW("http://www.google.com");
+
+        while (!www.isDone) {
+            time += 0.1f;
+            yield return null;
+        }
+
         yield return www;
+
         if (www.error != null) {
             isConnected = false;
         } else {
             isConnected = true;
         }
+
+        print("Time to download: " + time);
 
         Job();
     }

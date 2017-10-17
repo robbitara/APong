@@ -3,9 +3,11 @@
 public class CameraScript : MonoBehaviour {
 
     public bool Left, Right;
-    public Vector3 CustomMenu, PlayArea, Center;
+    public Vector3 CustomMenu, PlayArea, Center, ClickPos;
 
-	void Start () {
+    float deadZone = 50f;
+
+    void Start () {
         Left = false;
         Right = false;
         CustomMenu = new Vector3(-5.62f, 0, -10f);
@@ -36,6 +38,21 @@ public class CameraScript : MonoBehaviour {
     }
 
     void Update() {
+
+        if (transform.position.x < -5f) {
+            if (Input.GetMouseButtonDown(0)) {
+                ClickPos = Input.mousePosition;
+            }
+
+            if (Input.GetMouseButtonUp(0)) {
+                Vector2 deltaPos = ClickPos - Input.mousePosition;
+
+                if (Mathf.Abs(deltaPos.x) > deadZone) {
+                    GoCenter();
+                }
+            }
+        }
+
         if (Left && !Right) {
             LerpCameraTo(CustomMenu);
         }
