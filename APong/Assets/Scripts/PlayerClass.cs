@@ -6,13 +6,12 @@ using UnityEngine;
 [Serializable]
 public class PlayerClass {
 
-    const string fileName = "/ProfileData.bin";
+    const string fileName = "/Profile.bin";
 
     private int _gamesPlayed;
     private int _gifts;
 
     public int highscore, skinID;
-    public bool sound, skinColor, internetCheck, music, moveHint;
     public string SkinType;
     public DateTime saveDate;
 
@@ -46,15 +45,10 @@ public class PlayerClass {
         skinID = 0;
         _gamesPlayed = 0;
         _gifts = 1;
-        sound = true;
-        music = true;
-        skinColor = true;
-        moveHint = true;
-        internetCheck = false;
         SkinType = "RandomSkin";
     }
 
-    public void resetGamesPlayed() {
+    public void ResetGamesPlayed() {
         if (saveDate.Day != DateTime.Now.Day) {
             _gamesPlayed = 0;
         }
@@ -71,20 +65,33 @@ public class PlayerClass {
         return false;
     }
 
-    public static void SaveProfile(PlayerClass Player) {
+    public static void SaveProfile(PlayerClass Player, bool SavesDate) {
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(Application.persistentDataPath + fileName);
-        Player.saveDate = DateTime.Now;
+        if (SavesDate) {
+            Player.saveDate = DateTime.Now;
+        }
         bf.Serialize(file, Player);
         file.Close();
     }
 
     public static PlayerClass LoadProfile() {
         if (File.Exists(Application.persistentDataPath + fileName)) {
+            PlayerClass data;
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file = File.Open(Application.persistentDataPath + fileName, FileMode.Open);
-            PlayerClass data = (PlayerClass)bf.Deserialize(file);
-            file.Close();
+
+            try {
+                data = (PlayerClass)bf.Deserialize(file);
+                file.Close();
+            }
+            catch (Exception) {
+                file.Close();
+                File.Delete(Application.persistentDataPath + fileName);
+                data = new PlayerClass();
+                SaveProfile(data, true);
+            }
+
             return data;
         }
         return new PlayerClass();

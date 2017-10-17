@@ -17,11 +17,14 @@ public class GameManager : MonoBehaviour {
     bool playing, ReachedHighscore, isConnected;
     public bool resetScene;
 
-    // Instanza profilo giocatore
+    // Instanze profilo giocatore
     public static PlayerClass Player;
+    public static AppSettings GameSettings;
 
     void Awake() {
+        GameSettings = AppSettings.LoadSettings();
         Player = PlayerClass.LoadProfile();
+        print("Ora attuale: " + DateTime.Today);
     }
 
     void Start() {
@@ -72,18 +75,21 @@ public class GameManager : MonoBehaviour {
 
     public void UpdateStats() {
 
+        debugPlayer(Player);
+
         highscore_intro.text = Player.highscore.ToString();
 
-        Player.resetGamesPlayed();
+        Player.ResetGamesPlayed();
 
         if (isConnected) {
-            if (Player.Rewarded() || Player.gifts == SkinManager.RandomSkin.Length) {
+            if (Player.Rewarded() || Player.gifts == -1) {
                 rewardIcon.transform.Find("ObtainedIcon").gameObject.SetActive(true);
                 rewardIcon.transform.Find("Percentage").gameObject.SetActive(false);
                 rewardIcon.transform.Find("LoadingCircle").gameObject.SetActive(false);
             } else {
                 rewardIcon.transform.Find("Percentage").gameObject.SetActive(true);
                 rewardIcon.transform.Find("LockedGift").gameObject.SetActive(false);
+                rewardIcon.transform.Find("ObtainedIcon").gameObject.SetActive(false);
                 rewardIcon.transform.Find("LoadingCircle").gameObject.SetActive(true);
 
                 rewardIcon.transform.Find("Percentage").GetComponent<Text>().text = Player.gamesPlayed.ToString() + "/5";
@@ -100,17 +106,17 @@ public class GameManager : MonoBehaviour {
             rewardIcon.transform.Find("LoadingCircle").gameObject.SetActive(false);
             rewardIcon.transform.Find("LockedGift").gameObject.SetActive(true);
 
-            if (!Player.internetCheck) {
+            if (!GameSettings.internetCheck) {
                 noInternet.SetActive(true);
                 MenuShowed = noInternet;
                 GlobalMenuTarget = new Vector2(MenuShowed.GetComponent<RectTransform>().anchoredPosition.x, 0f);
-                Player.internetCheck = true;
+                GameSettings.internetCheck = true;
             }
         }
 
         SkinManager.setSkins();
 
-        PlayerClass.SaveProfile(Player);
+        PlayerClass.SaveProfile(Player, true);
     }
 
     //  WaitForAd: Coroutine che mostra la pubblicità. Solo Una volta chiusa, continua l'esecuzione del codice.
@@ -181,31 +187,36 @@ public class GameManager : MonoBehaviour {
         if (isConnected) {
             // Sezione relativa alla skin giornaliera
 
-            if (Player.Rewarded() || Player.gifts == SkinManager.RandomSkin.Length) {
+            if (Player.Rewarded() || Player.gifts == -1) {
                 result.transform.Find("AuxMenu").gameObject.SetActive(false);
                 StartCoroutine(WaitForJob(1f, () => {
 
                     if (points >= nextColor && !SkinManager.AllUnlocked()) {
                         result.transform.Find("Custom").gameObject.SetActive(true);
                         result.transform.Find("Custom").GetComponent<Animation>().Play();
+                        SkinManager.FindNextSkin();
                     } else {
                         result.transform.Find("Custom").gameObject.SetActive(false);
                     }
-
-                    SkinManager.FindNextSkin();
                 }));
             } else {
                 result.transform.Find("AuxMenu").gameObject.SetActive(true);
 
+                for (int i=0; i < result.transform.Find("AuxMenu/CirclesBox").childCount; i++) {
+                    result.transform.Find("AuxMenu/CirclesBox").GetChild(i).GetComponent<Image>().color = Color.black;
+                    result.transform.Find("AuxMenu/CirclesBox").GetChild(i).GetComponent<RectTransform>().localScale = new Vector3(0.5f, 0.5f, 1f);
+                    result.transform.Find("AuxMenu/CirclesBox").GetChild(i).Find("Checkmark").gameObject.SetActive(false);
+                }
+
                 for (int i = 0; i < (Player.gamesPlayed - 1); i++) {
-                    result.transform.Find("AuxMenu/CirclesBox").GetChild(i).GetComponent<Image>().color = new Color32(255, 164, 0, 255);
+                    result.transform.Find("AuxMenu/CirclesBox").GetChild(i).GetComponent<Image>().color = new Color32(0, 222, 94, 255);
                     result.transform.Find("AuxMenu/CirclesBox").GetChild(i).GetComponent<RectTransform>().localScale = Vector3.one;
                     result.transform.Find("AuxMenu/CirclesBox").GetChild(i).Find("Checkmark").gameObject.SetActive(true);
                 }
 
                 StartCoroutine(WaitForJob(1f, () => {
 
-                    result.transform.Find("AuxMenu/CirclesBox").GetChild(Player.gamesPlayed - 1).GetComponent<Image>().color = new Color32(255, 164, 0, 255);
+                    result.transform.Find("AuxMenu/CirclesBox").GetChild(Player.gamesPlayed - 1).GetComponent<Image>().color = new Color32(0, 222, 94, 255);
                     result.transform.Find("AuxMenu/CirclesBox").GetChild(Player.gamesPlayed - 1).Find("Checkmark").gameObject.SetActive(true);
                     result.transform.Find("AuxMenu/CirclesBox").GetChild(Player.gamesPlayed - 1).GetComponent<Animation>().Play();
                     PlaySound(result.transform.Find("AuxMenu").GetComponent<AudioSource>(), 0f);
@@ -223,6 +234,11 @@ public class GameManager : MonoBehaviour {
                     }
 
                     SkinManager.FindNextSkin();
+
+                    if (Player.gifts == SkinManager.RandomSkin.Length) {
+                        Player.gifts = -1;
+                    }
+
                 }));
             }
         } else {
@@ -292,6 +308,7 @@ public class GameManager : MonoBehaviour {
     }
 
     public void LoadProfile() {
+
         SkinManager.setSkins();
 
         if (Player.SkinType == "RandomSkin") {
@@ -354,13 +371,13 @@ public class GameManager : MonoBehaviour {
     }
 
     public static void PlaySound(AudioSource Clip, float delay) {
-        if (Player.sound && !Clip.isPlaying) {
+        if (GameSettings.SFX && !Clip.isPlaying) {
             Clip.PlayDelayed(delay);
         }
     }
 
     public void PlaySound() {
-        if (Player.sound && !GetComponent<AudioSource>().isPlaying) {
+        if (GameSettings.SFX && !GetComponent<AudioSource>().isPlaying) {
             GetComponent<AudioSource>().Play();
         }
     }
@@ -402,17 +419,18 @@ public class GameManager : MonoBehaviour {
         }
     }
 
+    public void GoToAppPage() {
+        Application.OpenURL("https://play.google.com/store/apps/details?id=com.supercell.clashroyale&hl=it");
+    }
+
     public static void debugPlayer(PlayerClass Player) {
         print("Highscore: " + Player.highscore);
         print("skinID: " + Player.skinID);
         print("SkinType: " + Player.SkinType);
         print("Partite giocate: " + Player.gamesPlayed);
         print("Gifts: " + Player.gifts);
-        print("sound: " + Player.sound);
-        print("skinColor: " + Player.skinColor);
         print(Player.saveDate + " / " + DateTime.Now);
         print(Player.Rewarded());
-        print("Menu internet: " + Player.internetCheck);
     }
 
     #endregion Utilies

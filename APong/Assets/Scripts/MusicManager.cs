@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class MusicManager : MonoBehaviour {
 
@@ -11,7 +9,7 @@ public class MusicManager : MonoBehaviour {
     }
 
     public static void SetMusic() {
-        if (GameManager.Player.music) {
+        if (GameManager.GameSettings.Music) {
             Music.Play();
         } else {
             Music.Stop();

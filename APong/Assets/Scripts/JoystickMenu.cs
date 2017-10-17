@@ -38,8 +38,6 @@ public class JoystickMenu : MonoBehaviour, IDragHandler, IEndDragHandler, IPoint
 
         StartCoroutine(GameManager.WaitForJob(0.5f, () => {
             pad.GetComponent<Animation>().Play();
-            pad.transform.Find("Text").gameObject.SetActive(true);
-            pad.transform.Find("Text").GetComponent<Animation>().Play();
         }));
     }
 
@@ -81,10 +79,6 @@ public class JoystickMenu : MonoBehaviour, IDragHandler, IEndDragHandler, IPoint
 
             if (pad.GetComponent<Animation>().isPlaying) {
                 pad.GetComponent<Animation>().Stop();
-            }
-
-            if (pad.transform.Find("Text").gameObject.activeInHierarchy) {
-                pad.transform.Find("Text").gameObject.SetActive(false);
             }
 
             dragging = true;

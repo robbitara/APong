@@ -43,7 +43,5 @@ public class SkinScript : MonoBehaviour {
 
         backgroundSkin.GetComponent<SpriteRenderer>().sprite = Skin;
         GameManager.Player.skinID = ID;
-
-        PlayerClass.SaveProfile(GameManager.Player);
     }
 }

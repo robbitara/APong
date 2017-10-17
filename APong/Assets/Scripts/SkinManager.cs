@@ -31,9 +31,26 @@ public class SkinManager : MonoBehaviour {
         // ordino l'array
         GameManager.ArraySort(RandomSkin, RandomSkin.Length, "Random");
 
-        // Imposto le skin random in base ai gift del giocatore
-        for (int i = 0; i < RandomSkin.Length; i++) {
-            if (i < GameManager.Player.gifts) {
+        if (GameManager.Player.gifts != -1) {
+            // Imposto le skin random in base ai gift del giocatore
+            for (int i = 0; i < RandomSkin.Length; i++) {
+                if (i < GameManager.Player.gifts) {
+                    RandomSkin[i].GetComponent<Image>().color = RandomSkin[i].GetComponent<SkinScript>().bgColor;
+                    int n = i;
+                    RandomSkin[i].GetComponent<Button>().onClick.AddListener(() => RandomSkin[n].GetComponent<SkinScript>().ChangeBGColor(false));
+                    RandomSkin[i].transform.Find("LabelContainer").Find("Text").GetComponent<Text>().text = RandomSkin[i].GetComponent<SkinScript>().skinName;
+                    RandomSkin[i].transform.Find("Locked").gameObject.SetActive(false);
+                    if (RandomSkin[i].GetComponent<SkinScript>().ID == GameManager.Player.skinID && GameManager.Player.SkinType == "RandomSkin") {
+                        RandomSkin[i].GetComponent<SkinScript>().isUsing = true;
+                    }
+                } else {
+                    RandomSkin[i].GetComponent<Image>().color = Color.black;
+                    RandomSkin[i].transform.Find("LabelContainer").Find("Text").GetComponent<Text>().text = "Locked";
+                    RandomSkin[i].GetComponent<Transform>().Find("Locked").gameObject.SetActive(true);
+                }
+            }
+        } else {
+            for (int i =0; i<RandomSkin.Length; i++) {
                 RandomSkin[i].GetComponent<Image>().color = RandomSkin[i].GetComponent<SkinScript>().bgColor;
                 int n = i;
                 RandomSkin[i].GetComponent<Button>().onClick.AddListener(() => RandomSkin[n].GetComponent<SkinScript>().ChangeBGColor(false));
@@ -42,13 +59,8 @@ public class SkinManager : MonoBehaviour {
                 if (RandomSkin[i].GetComponent<SkinScript>().ID == GameManager.Player.skinID && GameManager.Player.SkinType == "RandomSkin") {
                     RandomSkin[i].GetComponent<SkinScript>().isUsing = true;
                 }
-            } else {
-                RandomSkin[i].GetComponent<Image>().color = Color.black;
-                RandomSkin[i].transform.Find("LabelContainer").Find("Text").GetComponent<Text>().text = "Locked";
-                RandomSkin[i].GetComponent<Transform>().Find("Locked").gameObject.SetActive(true);
             }
         }
-
 
         // imposto le skin elite in base al punteggio massimo del giocatore
 
@@ -66,11 +78,6 @@ public class SkinManager : MonoBehaviour {
                 if (EliteSkin[i].GetComponent<SkinScript>().ID == GameManager.Player.skinID && GameManager.Player.SkinType == "EliteSkin") {
                     EliteSkin[i].GetComponent<SkinScript>().isUsing = true;
                 }
-
-                //if (!EliteSkin[i].GetComponent<SkinScript>().unlocked) {
-                //    EliteSkin[i].GetComponent<SkinScript>().unlocked = true;
-                //    EliteSkin[i].transform.Find("AlertIcon").gameObject.SetActive(true);
-                //}
 
             } else {
                 EliteSkin[i].GetComponent<Image>().color = new Color(0, 0, 0, 1);

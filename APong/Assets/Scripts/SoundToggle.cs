@@ -7,23 +7,23 @@ public class SoundToggle : MonoBehaviour {
 
     void Start() {
         if (gameObject.name == "FXToggle") {
-            ChooseSprite(GameManager.Player.sound);
+            ChooseSprite(GameManager.GameSettings.SFX);
         } else {
-            ChooseSprite(GameManager.Player.music);
+            ChooseSprite(GameManager.GameSettings.Music);
         }
     }
 
     public void Toggle() {
         if (gameObject.name == "FXToggle") {
-            GameManager.Player.sound = !GameManager.Player.sound;
-            ChooseSprite(GameManager.Player.sound);
+            GameManager.GameSettings.SFX = !GameManager.GameSettings.SFX;
+            ChooseSprite(GameManager.GameSettings.SFX);
         } else {
-            GameManager.Player.music = !GameManager.Player.music;
-            ChooseSprite(GameManager.Player.music);
+            GameManager.GameSettings.Music = !GameManager.GameSettings.Music;
+            ChooseSprite(GameManager.GameSettings.Music);
             MusicManager.SetMusic();
         }
 
-        PlayerClass.SaveProfile(GameManager.Player);
+        AppSettings.SaveSettings(GameManager.GameSettings);
     }
 
     void ChooseSprite (bool Choose) {
